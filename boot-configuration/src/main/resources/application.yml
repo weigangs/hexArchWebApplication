@@ -1,0 +1,68 @@
+server:
+  port: 18080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  tomcat:
+    max-threads: 200
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: demo-web-app
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+    pathmatch:
+      matching-strategy: ant_path_matcher # 如果你想用老式路径匹配方式
+    servlet:
+      multipart:
+        enabled: true
+        max-file-size: 10MB
+        max-request-size: 50MB
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    property-naming-strategy: SNAKE_CASE
+    serialization:
+      indent-output: false
+      write-dates-as-timestamps: false
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console  # 访问地址 http://localhost:8080/h2-console
+logging:
+  level:
+    root: info
+    org.springframework.web: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
+# 如果启用了 actuator，可用如下配置
+# actuator:
+#   metrics:
+#     export:
+#       prometheus:
+#         enabled: true

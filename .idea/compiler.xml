@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../../../../dataStore/gradleStore/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar" />
+        </processorPath>
+        <module name="hexArchWebApplication.out-port.test" />
+        <module name="hexArchWebApplication.persist-adapter.main" />
+        <module name="hexArchWebApplication.boot-configuration.test" />
+        <module name="hexArchWebApplication.web-adapter.test" />
+        <module name="hexArchWebApplication.persist-adapter.test" />
+        <module name="hexArchWebApplication.web-adapter.main" />
+        <module name="hexArchWebApplication.out-port.main" />
+        <module name="hexArchWebApplication.in-port.test" />
+        <module name="hexArchWebApplication.boot-configuration.main" />
+        <module name="hexArchWebApplication.in-port.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../../../../dataStore/gradleStore/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.3.Final/dce418bedafd71ff8dd2cef15006c0fee788b073/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../../dataStore/gradleStore/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar" />
+        </processorPath>
+        <module name="hexArchWebApplication.application.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="21">
+      <module name="configuration" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

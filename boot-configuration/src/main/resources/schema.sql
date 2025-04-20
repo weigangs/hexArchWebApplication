@@ -1,0 +1,5 @@
+CREATE TABLE tb_user (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100),
+  email VARCHAR(100)
+);
