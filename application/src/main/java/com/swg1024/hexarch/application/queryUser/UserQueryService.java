@@ -1,10 +1,10 @@
 package com.swg1024.hexarch.application.queryUser;
 
 import com.swg1024.hexarch.application.queryUser.convertor.UserConvertor;
-import com.swg1024.hexarch.inport.model.vo.UserModelVO;
-import com.swg1024.hexarch.inport.queryUser.UserQueryPort;
-import com.swg1024.hexarch.outport.model.UserModel;
-import com.swg1024.hexarch.outport.queryUser.UserQueryOutPort;
+import com.swg1024.hexarch.port.in.model.vo.UserModelVO;
+import com.swg1024.hexarch.port.in.queryUser.UserQueryPort;
+import com.swg1024.hexarch.port.out.model.UserModel;
+import com.swg1024.hexarch.port.out.queryUser.UserQueryOutPort;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.swg1024.hexarch.domain.createUser;
 
-import com.swg1024.hexarch.outport.createUser.CreateUserOutPort;
-import com.swg1024.hexarch.outport.model.UserModel;
+import com.swg1024.hexarch.port.out.createUser.CreateUserOutPort;
+import com.swg1024.hexarch.port.out.model.UserModel;
 
 public class CreateUserDomain {
 

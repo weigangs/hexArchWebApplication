@@ -2,9 +2,9 @@ package com.swg1024.hexarch.application.createUser;
 
 
 import com.swg1024.hexarch.domain.createUser.CreateUserDomain;
-import com.swg1024.hexarch.inport.createUser.CreateUserPort;
-import com.swg1024.hexarch.inport.createUser.command.CreateUserCommand;
-import com.swg1024.hexarch.outport.createUser.CreateUserOutPort;
+import com.swg1024.hexarch.port.in.createUser.CreateUserPort;
+import com.swg1024.hexarch.port.in.createUser.command.CreateUserCommand;
+import com.swg1024.hexarch.port.out.createUser.CreateUserOutPort;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

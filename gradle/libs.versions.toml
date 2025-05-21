@@ -11,6 +11,8 @@ jakarta-annotation-api-version = "2.1.1"
 org-mapstruct-mapstruct = "1.5.3.Final"
 org-mapstruct-mapstruct-processor = "1.5.3.Final"
 mockito-version = "5.11.0"
+archunit-version = "1.4.0"
+archunit-junit5-version = "1.4.0"
 
 [libraries]
 org-springframework-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "org-springframework-boot" }
@@ -33,3 +35,5 @@ org-mapstruct-mapstruct-processor = { module = "org.mapstruct:mapstruct-processo
 mockito-core = {module = "org.mockito:mockito-core", version.ref = "mockito-version"}
 mockito-junit-jupiter = {module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito-version"}
 mockito-inline = {module = "org.mockito:mockito-inline", version.ref = "mockito-version"}
+archunit = {module = "com.tngtech.archunit:archunit", version.ref = "archunit-version"}
+archunit-junit5 = {module = "com.tngtech.archunit:archunit-junit5", version.ref = "archunit-junit5-version"}

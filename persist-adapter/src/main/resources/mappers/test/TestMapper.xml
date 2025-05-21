@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.swg1024.hexarch.persistadapter.mapper.TbUserMapper">
+<mapper namespace="com.swg1024.hexarch.adapter.persist.mapper.TbUserMapper">
 
-    <resultMap id="UserResultMap" type="com.swg1024.hexarch.persistadapter.entity.TbUser">
+    <resultMap id="UserResultMap" type="com.swg1024.hexarch.adapter.persist.entity.TbUser">
         <result property="name" column="name"/>
         <result property="email" column="email"/>
     </resultMap>
@@ -16,7 +16,7 @@
         WHERE name = #{name}
     </select>
 
-    <insert id="insertUser" parameterType="com.swg1024.hexarch.persistadapter.entity.TbUser">
+    <insert id="insertUser" parameterType="com.swg1024.hexarch.adapter.persist.entity.TbUser">
         INSERT INTO tb_user (name, email)
         VALUES (#{name}, #{email})
     </insert>

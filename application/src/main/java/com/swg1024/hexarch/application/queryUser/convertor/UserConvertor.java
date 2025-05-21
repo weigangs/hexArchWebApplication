@@ -1,8 +1,8 @@
 package com.swg1024.hexarch.application.queryUser.convertor;
 
 import com.lkyl.oceanframework.common.utils.mapperstruct.base.BaseMapperConverter;
-import com.swg1024.hexarch.inport.model.vo.UserModelVO;
-import com.swg1024.hexarch.outport.model.UserModel;
+import com.swg1024.hexarch.port.in.model.vo.UserModelVO;
+import com.swg1024.hexarch.port.out.model.UserModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

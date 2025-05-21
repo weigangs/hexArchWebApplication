@@ -31,6 +31,8 @@ dependencies{
     annotationProcessor(libs.org.projectlombok)
     testCompileOnly(libs.org.projectlombok)
     testAnnotationProcessor(libs.org.projectlombok)
+    testImplementation(libs.archunit.junit5)
+    testImplementation(libs.archunit)
 }
 
 
