@@ -1,7 +1,7 @@
 package com.swg1024.hexarch.adapter.web.userQuery;
 
 import com.lkyl.oceanframework.web.response.CommonResult;
-import com.swg1024.hexarch.port.in.model.vo.UserModelVO;
+import com.swg1024.hexarch.port.in.queryUser.model.vo.UserModelVO;
 import com.swg1024.hexarch.port.in.queryUser.UserQueryPort;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;

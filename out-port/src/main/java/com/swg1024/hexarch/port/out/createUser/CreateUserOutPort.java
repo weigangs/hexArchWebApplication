@@ -1,8 +1,8 @@
 package com.swg1024.hexarch.port.out.createUser;
 
-import com.swg1024.hexarch.port.out.model.UserModel;
+import com.swg1024.hexarch.port.out.createUser.model.PoCreateUserModel;
 
 public interface CreateUserOutPort {
 
-    int createUser(UserModel userModel);
+    int createUser(PoCreateUserModel userModel);
 }

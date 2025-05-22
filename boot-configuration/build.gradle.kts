@@ -27,12 +27,14 @@ dependencies{
     implementation(project(":out-port"))
     implementation(project(":web-adapter"))
     implementation(project(":persist-adapter"))
+    implementation(project(":domain-logic"))
     compileOnly(libs.org.projectlombok)
     annotationProcessor(libs.org.projectlombok)
     testCompileOnly(libs.org.projectlombok)
     testAnnotationProcessor(libs.org.projectlombok)
     testImplementation(libs.archunit.junit5)
     testImplementation(libs.archunit)
+    testImplementation(libs.classgraph)
 }
 
 

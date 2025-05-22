@@ -1,9 +1,9 @@
-package com.swg1024.hexarch.port.in.model.vo;
+package com.swg1024.hexarch.port.out.queryUser.model;
 
 import lombok.Data;
 
 @Data
-public class UserModelVO {
+public class PoQueryUserModel {
 
     private  String userName;
 

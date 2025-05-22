@@ -1,7 +1,7 @@
 package com.swg1024.hexarch.domain.createUser;
 
 import com.swg1024.hexarch.port.out.createUser.CreateUserOutPort;
-import com.swg1024.hexarch.port.out.model.UserModel;
+import com.swg1024.hexarch.port.out.createUser.model.PoCreateUserModel;
 
 public class CreateUserDomain {
 
@@ -23,7 +23,7 @@ public class CreateUserDomain {
     }
 
     public int createUser() {
-        UserModel userModel = new UserModel();
+        PoCreateUserModel userModel = new PoCreateUserModel();
         userModel.setUserName(userName);
         userModel.setEmail(email);
         return createUserOutPort.createUser(userModel);

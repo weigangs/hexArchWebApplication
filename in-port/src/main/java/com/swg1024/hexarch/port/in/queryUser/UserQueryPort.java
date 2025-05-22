@@ -1,6 +1,6 @@
 package com.swg1024.hexarch.port.in.queryUser;
 
-import com.swg1024.hexarch.port.in.model.vo.UserModelVO;
+import com.swg1024.hexarch.port.in.queryUser.model.vo.UserModelVO;
 
 public interface UserQueryPort {
 

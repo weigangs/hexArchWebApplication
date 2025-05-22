@@ -1,8 +1,8 @@
 package com.swg1024.hexarch.port.out.queryUser;
 
-import com.swg1024.hexarch.port.out.model.UserModel;
+import com.swg1024.hexarch.port.out.queryUser.model.PoQueryUserModel;
 
 public interface UserQueryOutPort {
 
-    UserModel queryUser(String userName);
+    PoQueryUserModel queryUser(String userName);
 }

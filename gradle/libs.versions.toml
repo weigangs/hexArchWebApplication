@@ -13,6 +13,7 @@ org-mapstruct-mapstruct-processor = "1.5.3.Final"
 mockito-version = "5.11.0"
 archunit-version = "1.4.0"
 archunit-junit5-version = "1.4.0"
+classgraph-version = "4.8.165"
 
 [libraries]
 org-springframework-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "org-springframework-boot" }
@@ -37,3 +38,4 @@ mockito-junit-jupiter = {module = "org.mockito:mockito-junit-jupiter", version.r
 mockito-inline = {module = "org.mockito:mockito-inline", version.ref = "mockito-version"}
 archunit = {module = "com.tngtech.archunit:archunit", version.ref = "archunit-version"}
 archunit-junit5 = {module = "com.tngtech.archunit:archunit-junit5", version.ref = "archunit-junit5-version"}
+classgraph = {module = "io.github.classgraph:classgraph", version.ref = "classgraph-version"}

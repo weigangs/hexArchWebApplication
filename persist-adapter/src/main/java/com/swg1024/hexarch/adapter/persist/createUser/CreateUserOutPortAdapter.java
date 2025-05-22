@@ -3,7 +3,7 @@ package com.swg1024.hexarch.adapter.persist.createUser;
 import com.swg1024.hexarch.adapter.persist.entity.TbUser;
 import com.swg1024.hexarch.adapter.persist.mapper.TbUserMapper;
 import com.swg1024.hexarch.port.out.createUser.CreateUserOutPort;
-import com.swg1024.hexarch.port.out.model.UserModel;
+import com.swg1024.hexarch.port.out.createUser.model.PoCreateUserModel;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +14,7 @@ public class CreateUserOutPortAdapter implements CreateUserOutPort {
     private TbUserMapper tbUserMapper;
 
     @Override
-    public int createUser(UserModel userModel) {
+    public int createUser(PoCreateUserModel userModel) {
 
         TbUser user = new TbUser();
         user.setName(userModel.getUserName());
