@@ -1,8 +1,8 @@
 package com.swg1024.hexarch.adapter.web.createUser;
 
 import com.lkyl.oceanframework.web.response.CommonResult;
-import com.swg1024.hexarch.port.in.createUser.CreateUserPort;
-import com.swg1024.hexarch.port.in.createUser.command.CreateUserCommand;
+import com.swg1024.hexarch.port.web.createUser.CreateUserPort;
+import com.swg1024.hexarch.port.web.createUser.command.CreateUserCommand;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

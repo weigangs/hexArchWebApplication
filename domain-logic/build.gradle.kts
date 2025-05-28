@@ -26,7 +26,7 @@ dependencies {
 //    testCompileOnly(libs.org.projectlombok)
 //    testAnnotationProcessor(libs.org.projectlombok)
     implementation(libs.jakarta.annotation.api)
-    implementation(project(":out-port"))
+    implementation(project(":port-persist"))
 
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.junit.jupiter)

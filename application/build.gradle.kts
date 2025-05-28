@@ -29,8 +29,8 @@ dependencies {
 
 
     implementation(libs.org.springframework.spring.context)
-    implementation(project(":out-port"))
-    implementation(project(":in-port"))
+    implementation(project(":port-persist"))
+    implementation(project(":port-web"))
     implementation(project(":domain-logic"))
     implementation(libs.oceanframework.common.utils)
     implementation(libs.jakarta.annotation.api)

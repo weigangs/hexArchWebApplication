@@ -1,11 +1,11 @@
 package com.swg1024.hexarch.application.queryUser;
 
 import com.swg1024.hexarch.application.queryUser.converter.UserConverter;
-import com.swg1024.hexarch.port.in.queryUser.UserQueryPort;
-import com.swg1024.hexarch.port.in.queryUser.model.vo.UserModelVO;
-import com.swg1024.hexarch.port.out.queryUser.UserQueryOutPort;
-import com.swg1024.hexarch.port.out.queryUser.model.PoQueryUserModel;
-import jakarta.annotation.Resource;
+import com.swg1024.hexarch.port.persist.queryUser.UserQueryOutPort;
+import com.swg1024.hexarch.port.persist.queryUser.model.PoQueryUserModel;
+import com.swg1024.hexarch.port.web.queryUser.UserQueryPort;
+import com.swg1024.hexarch.port.web.queryUser.model.vo.UserModelVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -13,7 +13,7 @@ import java.util.Objects;
 @Service
 public class UserQueryService implements UserQueryPort {
 
-    @Resource
+    @Autowired
     private UserQueryOutPort userQueryOutPort;
 
     @Override

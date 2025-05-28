@@ -2,17 +2,18 @@ package com.swg1024.hexarch.application.createUser;
 
 
 import com.swg1024.hexarch.domain.createUser.CreateUserDomain;
-import com.swg1024.hexarch.port.in.createUser.CreateUserPort;
-import com.swg1024.hexarch.port.in.createUser.command.CreateUserCommand;
-import com.swg1024.hexarch.port.out.createUser.CreateUserOutPort;
+import com.swg1024.hexarch.port.web.createUser.CreateUserPort;
+import com.swg1024.hexarch.port.web.createUser.command.CreateUserCommand;
+import com.swg1024.hexarch.port.persist.createUser.CreateUserOutPort;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class CreateUserService implements CreateUserPort {
 
-    @Resource
+    @Autowired
     private CreateUserOutPort createUserOutPort;
 
     @Override

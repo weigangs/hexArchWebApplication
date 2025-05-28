@@ -2,8 +2,8 @@ package com.swg1024.hexarch.adapter.persist.queryUser;
 
 import com.swg1024.hexarch.adapter.persist.entity.TbUser;
 import com.swg1024.hexarch.adapter.persist.mapper.TbUserMapper;
-import com.swg1024.hexarch.port.out.queryUser.UserQueryOutPort;
-import com.swg1024.hexarch.port.out.queryUser.model.PoQueryUserModel;
+import com.swg1024.hexarch.port.persist.queryUser.UserQueryOutPort;
+import com.swg1024.hexarch.port.persist.queryUser.model.PoQueryUserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

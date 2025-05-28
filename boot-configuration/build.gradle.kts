@@ -23,8 +23,8 @@ dependencies{
     }
     implementation("com.h2database:h2:2.2.224")
     implementation(project(":application"))
-    implementation(project(":in-port"))
-    implementation(project(":out-port"))
+    implementation(project(":port-web"))
+    implementation(project(":port-persist"))
     implementation(project(":web-adapter"))
     implementation(project(":persist-adapter"))
     implementation(project(":domain-logic"))
@@ -45,3 +45,9 @@ tasks.withType<Test> {
 springBoot {
     mainClass.set("com.swg1024.hexarch.BootApplication")
 }
+
+tasks.test {
+    reports.html.required.set(false)
+    reports.junitXml.required.set(false)
+}
+

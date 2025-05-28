@@ -2,19 +2,11 @@ package com.swg1024.hexarch;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
-import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
-import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ClassInfo;
 import org.junit.jupiter.api.Test;
-
-import javax.annotation.processing.Generated;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAPackage;
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAnyPackage;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 public class DependencyPrincipalBetweenModuleTest {
 
@@ -34,22 +26,22 @@ public class DependencyPrincipalBetweenModuleTest {
 
     private static final String mapStructPackage = "org.mapstruct..";
 
-    private static final String inPortModule = "..port.in..";
+    private static final String webPortModule = "com.swg1024.hexarch.port.web..";
 
-    private static final String outPortModule = "..port.out..";
+    private static final String persistPortModule = "com.swg1024.hexarch.port.persist..";
 
-    private static final String domainModule = "..domain..";
+    private static final String domainModule = "com.swg1024.hexarch.domain..";
 
-    private static final String applicationModule = "..application..";
+    private static final String applicationModule = "com.swg1024.hexarch.application..";
 
-    private static final String webAdapterModule = "..adapter.web..";
+    private static final String webAdapterModule = "com.swg1024.hexarch.adapter.web..";
 
-    private static final String persistAdapterModule = "..adapter.persist..";
+    private static final String persistAdapterModule = "com.swg1024.hexarch.adapter.persist..";
 
     @Test
     void webAdapterShouldNotBeDependedOnByApplicationOrDomain() {
         ArchRuleDefinition.noClasses()
-                .that().resideInAnyPackage(inPortModule, outPortModule, domainModule, applicationModule)
+                .that().resideInAnyPackage(webPortModule, persistPortModule, domainModule, applicationModule)
                 .should().dependOnClassesThat().resideInAnyPackage(webAdapterModule)
                 .check(importedClasses);
     }
@@ -57,8 +49,8 @@ public class DependencyPrincipalBetweenModuleTest {
     @Test
     void inPortShouldNotDependedOnAnyModule() {
         ArchRuleDefinition.noClasses()
-                .that().resideInAPackage(inPortModule)
-                .should().dependOnClassesThat().resideInAnyPackage(webAdapterModule)
+                .that().resideInAPackage(webPortModule)
+                .should().dependOnClassesThat().resideInAnyPackage(webAdapterModule,persistAdapterModule,applicationModule,domainModule, persistPortModule)
                 .check(importedClasses);
     }
 
@@ -66,8 +58,8 @@ public class DependencyPrincipalBetweenModuleTest {
     void domainShouldOnlyDependOnOutPackages() {
         ArchRuleDefinition.classes()
                 .that().resideInAPackage(domainModule)
-                .should().onlyDependOnClassesThat(resideInAPackage(
-                        outPortModule).or(resideInAPackage(baseJavaPackage)))
+                .should().onlyDependOnClassesThat(resideInAnyPackage(
+                        webPortModule, persistPortModule).or(resideInAPackage(baseJavaPackage)))
                 .check(importedClasses);
     }
 
@@ -75,9 +67,8 @@ public class DependencyPrincipalBetweenModuleTest {
     void applicationShouldOnlyDependOnDomain() {
         ArchRuleDefinition.classes()
                 .that().resideInAPackage(applicationModule)
-                .and().areNotAnnotatedWith(Generated.class)
                 .should().onlyDependOnClassesThat(resideInAnyPackage(
-                        domainModule, inPortModule, outPortModule)
+                        applicationModule, domainModule, webPortModule, persistPortModule)
                         .or(resideInAnyPackage(baseJavaPackage,springFrameworkPackage,oceanFrameworkPackage,mapStructPackage)))
                 .check(importedClasses);
     }

@@ -2,8 +2,8 @@ package com.swg1024.hexarch.adapter.persist.createUser;
 
 import com.swg1024.hexarch.adapter.persist.entity.TbUser;
 import com.swg1024.hexarch.adapter.persist.mapper.TbUserMapper;
-import com.swg1024.hexarch.port.out.createUser.CreateUserOutPort;
-import com.swg1024.hexarch.port.out.createUser.model.PoCreateUserModel;
+import com.swg1024.hexarch.port.persist.createUser.CreateUserOutPort;
+import com.swg1024.hexarch.port.persist.createUser.model.PoCreateUserModel;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Repository;
 

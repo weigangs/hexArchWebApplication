@@ -18,10 +18,6 @@ public class DependencyPrincipalBetweenFunctionTest {
     private final JavaClasses importedClasses = new ClassFileImporter()
             .importPackages("com.swg1024.hexarch");
 
-    private static final String [] isInAllowedPackages = {
-            "java..","jakarta..", "org.springframework..","com.lkyl.oceanframework..", "org.mapstruct.."
-    };
-
     private static final String baseJavaPackage = "java..";
     private static final String jakartaPackage = "jakarta..";
 
@@ -31,52 +27,134 @@ public class DependencyPrincipalBetweenFunctionTest {
 
     private static final String mapStructPackage = "org.mapstruct..";
 
-//    private static final String [] isInAllowedPackagesForPersistAdapter = {
-//            "java..","jakarta..", "org.springframework..","com.lkyl.oceanframework..", "org.mapstruct..",
-//            "com.swg1024.hexarch.adapter.persist.entity..", "com.swg1024.hexarch.adapter.persist.mapper..",
-//            "com.swg1024.hexarch.port.in.."
-//    };
+    private static final String ibatisPackage = "org.apache.ibatis..";
 
-    public ArchRule webAdapterDependentOnSameModuleNameIn(String moduleName) {
+    private static final String persistAdapterEntityPackage = "com.swg1024.hexarch.adapter.persist.entity..";
+
+    private static final String persistAdapterMapperPackage = "com.swg1024.hexarch.adapter.persist.mapper..";
+
+    private static final String applicationBasePackage = "com.swg1024.hexarch.application.";
+
+    private static final String domainBasePackage = "com.swg1024.hexarch.domain.";
+
+    private static final String webPortBasePackage = "com.swg1024.hexarch.port.web.";
+
+    private static final String webAdapterBasePackage = "com.swg1024.hexarch.adapter.web.";
+
+    private static final String persistAdapterBasePackage = "com.swg1024.hexarch.adapter.persist.";
+
+    private static final String persistPortBasePackage = "com.swg1024.hexarch.port.persist.";
+
+    public ArchRule webAdapterOnlyDependentOnPortWeb(String moduleName) {
         return classes()
                 .that()
                 .resideInAPackage(
-                        "com.swg1024.hexarch.adapter.web." + moduleName + ".."
+                        webAdapterBasePackage + moduleName + ".."
 
                 )
                 .should()
                 .onlyDependOnClassesThat(resideInAnyPackage(
-                        "com.swg1024.hexarch.port.in." + moduleName + ".."
+                        webAdapterBasePackage + moduleName + "..",
+                        webPortBasePackage + moduleName + ".."
 
-                ).or(resideInAnyPackage(baseJavaPackage,jakartaPackage,springFrameworkPackage)))
-                .because("except in-port module, other modules cannot access classes inside " + moduleName);
+                ).or(resideInAnyPackage(baseJavaPackage,jakartaPackage,springFrameworkPackage,oceanFrameworkPackage,mapStructPackage)))
+                .because("webAdapter module cannot access classes outside webAdapter,webPort modules");
     }
 
+    public ArchRule webPortNotDependentOnOtherPackage(String moduleName) {
+        return classes()
+                .that()
+                .resideInAPackage(
+                        webPortBasePackage + moduleName + ".."
+
+                )
+                .should()
+                .onlyDependOnClassesThat(resideInAnyPackage(
+                        webPortBasePackage + moduleName + ".."
+
+                ).or(resideInAnyPackage(baseJavaPackage,jakartaPackage,springFrameworkPackage,oceanFrameworkPackage)))
+                .because("webPort module cannot access classes outside current package");
+    }
 
 
     public ArchRule applicationDependentOnSameModuleNameInAndOutAndDomain(String moduleName) {
         return classes()
                 .that()
                 .resideInAPackage(
-                        "com.swg1024.hexarch.application." + moduleName + ".."
+                        applicationBasePackage + moduleName + ".."
 
                 )
                 .should()
                 .onlyDependOnClassesThat(resideInAnyPackage(
-                        "com.swg1024.hexarch.domain." + moduleName + "..",
-                        "com.swg1024.hexarch.application." + moduleName + ".converter",
-                        "com.swg1024.hexarch.port.in." + moduleName + "..",
-                        "com.swg1024.hexarch.port.out." + moduleName + ".."
+                        applicationBasePackage + moduleName + "..",
+                        domainBasePackage + moduleName + "..",
+                        webPortBasePackage + moduleName + "..",
+                        persistPortBasePackage + moduleName + ".."
 
-                ).or(resideInAnyPackage(isInAllowedPackages)))
-                .because("except in-port module, other modules cannot access classes inside " + moduleName);
+                ).or(resideInAnyPackage(baseJavaPackage,springFrameworkPackage,oceanFrameworkPackage,mapStructPackage)))
+                .because("application module cannot access classes outside application,domain,webPort,persistPort modules");
+    }
+
+
+    public ArchRule persistPortNotDependentOnOtherPackage(String moduleName) {
+        return classes()
+                .that()
+                .resideInAPackage(
+                        persistPortBasePackage + moduleName + ".."
+
+                )
+                .should()
+                .onlyDependOnClassesThat(resideInAnyPackage(
+                        persistPortBasePackage + moduleName + ".."
+
+                ).or(resideInAnyPackage(baseJavaPackage,jakartaPackage,springFrameworkPackage,oceanFrameworkPackage)))
+                .because("persistPort module cannot access classes outside current package");
+    }
+
+    public ArchRule persistAdapterOnlyDependentOnPersistPort(String moduleName) {
+        return classes()
+                .that()
+                .resideInAPackage(
+                        persistAdapterBasePackage + moduleName + ".."
+
+                ).should()
+                .onlyDependOnClassesThat(resideInAnyPackage(
+                        persistAdapterBasePackage + moduleName + "..",
+                        persistPortBasePackage  + moduleName + ".."
+                ).or(resideInAnyPackage(baseJavaPackage,jakartaPackage,springFrameworkPackage,oceanFrameworkPackage
+                        ,mapStructPackage,ibatisPackage,persistAdapterEntityPackage,persistAdapterMapperPackage)))
+                .because("persistPort module cannot access classes outside current package");
     }
 
 
     @Test
-    public void domainShouldNotDependOnOtherPackages() {
-        applicationDependentOnSameModuleNameInAndOutAndDomain("queryUser").check(importedClasses);
-        applicationDependentOnSameModuleNameInAndOutAndDomain("createUser").check(importedClasses);
+    public void checkAllFunctions() {
+        for (String moduleName : findAllModuleNames("com.swg1024.hexarch", "application")) {
+            applicationDependentOnSameModuleNameInAndOutAndDomain(moduleName).check(importedClasses);
+
+        }
+        for (String moduleName : findAllModuleNames("com.swg1024.hexarch", "adapter.web")) {
+            webAdapterOnlyDependentOnPortWeb(moduleName).check(importedClasses);
+
+
+        }
+        for (String moduleName : findAllModuleNames("com.swg1024.hexarch", "port.web")) {
+            webPortNotDependentOnOtherPackage(moduleName).check(importedClasses);
+
+        }
+        for (String moduleName : findAllModuleNames("com.swg1024.hexarch", "port.persist")) {
+            persistPortNotDependentOnOtherPackage(moduleName).check(importedClasses);
+
+        }
+        for (String moduleName : findAllModuleNames("com.swg1024.hexarch", "port.persist")) {
+            persistPortNotDependentOnOtherPackage(moduleName).check(importedClasses);
+
+        }
+        for (String moduleName : findAllModuleNames("com.swg1024.hexarch", "adapter.persist")) {
+            persistAdapterOnlyDependentOnPersistPort(moduleName).check(importedClasses);
+
+        }
+
     }
 
     public Set<String> findAllModuleNames(String basePackage, String layer) {
@@ -94,6 +172,6 @@ public class DependencyPrincipalBetweenFunctionTest {
 
     @Test
     public void getAllModule() {
-        findAllModuleNames("com.swg1024.hexarch", "application").forEach(System.out::println);
+        findAllModuleNames("com.swg1024.hexarch", "adapter.web").forEach(System.out::println);
     }
 }

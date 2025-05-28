@@ -20,7 +20,7 @@ dependencies {
     annotationProcessor(libs.org.projectlombok)
     testCompileOnly(libs.org.projectlombok)
     testAnnotationProcessor(libs.org.projectlombok)
-    implementation(project(":in-port"))
+    implementation(project(":port-web"))
 
 }
 

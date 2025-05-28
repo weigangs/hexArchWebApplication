@@ -29,7 +29,7 @@ dependencies {
     testCompileOnly(libs.org.projectlombok)
     testAnnotationProcessor(libs.org.projectlombok)
 
-    implementation(project(":out-port"))
+    implementation(project(":port-persist"))
 }
 
 

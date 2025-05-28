@@ -22,7 +22,7 @@ pluginManagement {
 
 
 rootProject.name = "hexArchWebApplication"
-include( "boot-configuration", "web-adapter", "persist-adapter", "in-port", "out-port", "application", "domain-logic")
+include( "boot-configuration", "web-adapter", "persist-adapter", "port-web", "port-persist", "application", "domain-logic")
 
 dependencyResolutionManagement {
     repositories {
@@ -30,3 +30,4 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
