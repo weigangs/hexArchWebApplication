@@ -95,6 +95,23 @@ public class DependencyPrincipalBetweenFunctionTest {
                 .because("application module cannot access classes outside application,domain,webPort,persistPort modules");
     }
 
+    public ArchRule domainDependentOnPort(String moduleName) {
+        return classes()
+                .that()
+                .resideInAPackage(
+                        domainBasePackage + moduleName + ".."
+
+                )
+                .should()
+                .onlyDependOnClassesThat(resideInAnyPackage(
+                        domainBasePackage + moduleName + "..",
+                        webPortBasePackage + moduleName + "..",
+                        persistPortBasePackage + moduleName + ".."
+
+                ).or(resideInAnyPackage(baseJavaPackage,oceanFrameworkPackage)))
+                .because("application module cannot access classes outside application,domain,webPort,persistPort modules");
+    }
+
 
     public ArchRule persistPortNotDependentOnOtherPackage(String moduleName) {
         return classes()
@@ -133,6 +150,11 @@ public class DependencyPrincipalBetweenFunctionTest {
             applicationDependentOnSameModuleNameInAndOutAndDomain(moduleName).check(importedClasses);
 
         }
+
+        for (String moduleName : findAllModuleNames("com.swg1024.hexarch", "domain")) {
+            domainDependentOnPort(moduleName).check(importedClasses);
+        }
+
         for (String moduleName : findAllModuleNames("com.swg1024.hexarch", "adapter.web")) {
             webAdapterOnlyDependentOnPortWeb(moduleName).check(importedClasses);
 
@@ -154,6 +176,8 @@ public class DependencyPrincipalBetweenFunctionTest {
             persistAdapterOnlyDependentOnPersistPort(moduleName).check(importedClasses);
 
         }
+
+
 
     }
 
